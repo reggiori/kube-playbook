@@ -1,0 +1,11 @@
+name: Kube Playbook
+description: Ansible Playbook with Openshift for Kubernetes
+inputs:
+  cmd:
+    description: Command to execute
+    required: true
+runs:
+  using: "docker"
+  image: "docker://reggiori/kube-playbook:main"
+  args:
+    - ${{ inputs.cmd }}

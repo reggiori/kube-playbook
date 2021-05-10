@@ -1,0 +1,17 @@
+name: Test action
+on: [workflow_dispatch]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test GitHub Action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run playbook
+        uses: reggiori/kube-playbook@main
+        with:
+          cmd: ansible-playbook test-playbook.yaml
+        env:
+          K8S_AUTH_HOST: "${{ secrets.K8_HOST }}"
+          K8S_AUTH_API_KEY: "${{ secrets.K8_TOKEN }}"
+          K8S_AUTH_VERIFY_SSL: false
